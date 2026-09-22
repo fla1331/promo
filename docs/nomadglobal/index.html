@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nomad — Conta Internacional Completa | Viaje, Invista e Compre no Exterior</title>
+<meta name="description" content="Abra sua conta internacional Nomad. Dólar e euro em um só app. Cartão Visa aceito em 180+ países. Primeira conversão com taxa zero até US$ 2.000.">
+<style>
+  :root {
+    /* Azul mais escuro — paleta principal */
+    --nomad-darkest: #0B1F3A;
+    --nomad-dark:    #102A4C;
+    --nomad-mid:     #1A3A5C;
+    --nomad-indigo:  #3F51B5;
+    --nomad-light:   #7986CB;
+    --nomad-ice:     #EEF1F8;
+    --nomad-gold:    #F5A623;
+    --white:         #ffffff;
+    --grey-100:      #F8FAFC;
+    --grey-300:      #E2E8F0;
+    --grey-500:      #8899AA;
+    --grey-700:      #475569;
+    --radius:        14px;
+    --radius-sm:     10px;
+    --shadow:        0 10px 30px rgba(11, 31, 58, 0.10);
+    --shadow-lg:     0 20px 50px rgba(11, 31, 58, 0.18);
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+  body {
+    font-family: var(--font);
+    background: var(--grey-100);
+    color: var(--nomad-darkest);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ===== BARRA SUPERIOR ===== */
+  .topbar {
+    background: var(--nomad-darkest);
+    color: rgba(255,255,255,0.85);
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .topbar strong { color: var(--nomad-gold); }
+
+  /* ===== HERO COM IMAGEM DE FUNDO ===== */
+  .hero {
+    position: relative;
+    color: white;
+    padding: 90px 0 100px;
+    overflow: hidden;
+    background-color: var(--nomad-darkest);
+    /* Imagem de fundo — troque a URL se quiser */
+    background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  /* Overlay escuro em gradiente para garantir contraste do texto */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(11, 31, 58, 0.94) 0%,
+      rgba(16, 42, 76, 0.88) 45%,
+      rgba(26, 58, 92, 0.78) 100%
+    );
+    z-index: 1;
+  }
+
+  /* Brilho decorativo no canto */
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -20%; right: -10%;
+    width: 620px; height: 620px;
+    background: radial-gradient(circle, rgba(121,134,203,0.22) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 700px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(245,166,35,0.16);
+    border: 1px solid rgba(245,166,35,0.45);
+    color: var(--nomad-gold);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+
+  .hero h1 {
+    font-size: clamp(30px, 5vw, 50px);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.6px;
+    margin-bottom: 22px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.35);
+  }
+  .hero h1 span {
+    color: var(--nomad-gold);
+    display: inline-block;
+  }
+
+  .hero p {
+    font-size: clamp(15px, 2vw, 18px);
+    color: rgba(255,255,255,0.88);
+    max-width: 540px;
+    margin-bottom: 34px;
+    line-height: 1.7;
+    text-shadow: 0 1px 12px rgba(0,0,0,0.3);
+  }
+
+  .cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 36px;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+  }
+
+  .btn-primary {
+    background: var(--nomad-gold);
+    color: var(--nomad-darkest);
+    box-shadow: 0 6px 24px rgba(245,166,35,0.4);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 34px rgba(245,166,35,0.5);
+    background: #FFB83D;
+  }
+
+  .btn-outline {
+    background: rgba(255,255,255,0.06);
+    color: white;
+    border: 2px solid rgba(255,255,255,0.4);
+    backdrop-filter: blur(4px);
+  }
+  .btn-outline:hover {
+    border-color: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.14);
+  }
+
+  .hero-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 38px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.72);
+  }
+  .hero-trust span { display: flex; align-items: center; gap: 6px; }
+  .hero-trust svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+  /* ===== BARRA DE NÚMEROS ===== */
+  .stats-bar {
+    background: white;
+    border-bottom: 1px solid var(--grey-300);
+    padding: 28px 0;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: center;
+  }
+  .stat-item .num {
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: 800;
+    color: var(--nomad-indigo);
+    line-height: 1.2;
+  }
+  .stat-item .label {
+    font-size: 13px;
+    color: var(--grey-500);
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  /* ===== SEÇÕES ===== */
+  .section { padding: 64px 0; }
+
+  .section-title {
+    font-size: clamp(22px, 3.5vw, 32px);
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+    color: var(--nomad-darkest);
+  }
+  .section-sub {
+    text-align: center;
+    color: var(--grey-500);
+    font-size: 15px;
+    margin-bottom: 48px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ===== BENEFÍCIOS ===== */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .benefit-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--grey-300);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .benefit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .benefit-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    font-size: 22px;
+  }
+  .benefit-icon.blue   { background: rgba(63,81,181,0.10); color: var(--nomad-indigo); }
+  .benefit-icon.gold   { background: rgba(245,166,35,0.12); color: #D4890A; }
+  .benefit-icon.green  { background: rgba(34,197,94,0.10); color: #16A34A; }
+  .benefit-icon.purple { background: rgba(121,134,203,0.14); color: var(--nomad-light); }
+
+  .benefit-card h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--nomad-darkest);
+  }
+  .benefit-card p {
+    font-size: 14px;
+    color: var(--grey-700);
+    line-height: 1.65;
+  }
+
+  /* ===== SLIDER ===== */
+  .slider-section {
+    background: linear-gradient(160deg, var(--nomad-darkest) 0%, var(--nomad-dark) 100%);
+    color: white;
+    padding: 64px 0;
+    overflow: hidden;
+  }
+  .slider-section .section-title { color: white; }
+  .slider-section .section-sub { color: rgba(255,255,255,0.55); }
+
+  .slider-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 8px 0 24px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .slider-track::-webkit-scrollbar { display: none; }
+
+  .slide {
+    flex: 0 0 300px;
+    scroll-snap-align: start;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius);
+    padding: 32px 26px;
+    backdrop-filter: blur(4px);
+  }
+  .slide-num {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--nomad-gold);
+    opacity: 0.55;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .slide h4 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .slide p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.65;
+  }
+
+  .slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .slider-dots span {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .slider-dots span.active {
+    background: var(--nomad-gold);
+    width: 24px;
+    border-radius: 4px;
+  }
+
+  /* ===== COMPARATIVO ===== */
+  .compare-section { background: white; }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--grey-300);
+  }
+  .compare-table th {
+    background: var(--nomad-darkest);
+    color: white;
+    padding: 18px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+  }
+  .compare-table th:first-child { border-radius: var(--radius) 0 0 0; }
+  .compare-table th:last-child  { border-radius: 0 var(--radius) 0 0; }
+
+  .compare-table td {
+    padding: 16px 20px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--grey-300);
+    vertical-align: top;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:nth-child(even) td { background: var(--grey-100); }
+  .compare-table .highlight {
+    background: rgba(245,166,35,0.07) !important;
+    font-weight: 600;
+    color: var(--nomad-indigo);
+  }
+  .compare-table td .check { color: #16A34A; font-weight: 700; }
+  .compare-table td .cross { color: #DC2626; font-weight: 700; }
+
+  /* ===== FAQ ===== */
+  .faq-list {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .faq-item {
+    background: white;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--grey-300);
+    overflow: hidden;
+  }
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 18px 22px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--nomad-darkest);
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    font-family: inherit;
+    transition: background 0.2s;
+  }
+  .faq-q:hover { background: var(--grey-100); }
+  .faq-q .arrow {
+    font-size: 18px;
+    transition: transform 0.3s;
+    color: var(--grey-500);
+    flex-shrink: 0;
+  }
+  .faq-item.open .faq-q .arrow { transform: rotate(180deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.3s ease;
+    padding: 0 22px;
+    font-size: 14px;
+    color: var(--grey-700);
+    line-height: 1.7;
+  }
+  .faq-item.open .faq-a {
+    max-height: 320px;
+    padding: 0 22px 20px;
+  }
+
+  /* ===== CTA FINAL ===== */
+  .cta-final {
+    background: linear-gradient(135deg, var(--nomad-darkest) 0%, var(--nomad-indigo) 100%);
+    color: white;
+    text-align: center;
+    padding: 72px 0;
+  }
+  .cta-final h2 {
+    font-size: clamp(24px, 4vw, 34px);
+    font-weight: 800;
+    margin-bottom: 14px;
+    letter-spacing: -0.3px;
+  }
+  .cta-final p {
+    color: rgba(255,255,255,0.78);
+    font-size: 16px;
+    margin-bottom: 32px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-final .btn-primary {
+    font-size: 17px;
+    padding: 18px 48px;
+  }
+  .trust-line {
+    margin-top: 20px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ===== RODAPÉ ===== */
+  .footer {
+    background: #06152A;
+    color: rgba(255,255,255,0.4);
+    padding: 36px 0;
+    font-size: 12px;
+    line-height: 1.7;
+    text-align: center;
+  }
+  .footer a { color: rgba(255,255,255,0.6); text-decoration: underline; }
+  .footer .disclaimer {
+    max-width: 720px;
+    margin: 0 auto 16px;
+  }
+
+  /* ===== CTA FIXO NO MOBILE ===== */
+  .sticky-cta {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: white;
+    border-top: 1px solid var(--grey-300);
+    padding: 12px 16px;
+    display: none;
+    z-index: 100;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+  }
+  .sticky-cta .btn-primary {
+    width: 100%;
+    justify-content: center;
+    font-size: 15px;
+    padding: 14px;
+  }
+
+  /* ===== RESPONSIVO ===== */
+  @media (max-width: 768px) {
+    .hero { padding: 56px 0 68px; }
+    .hero-trust { gap: 16px; font-size: 12px; }
+    .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .stat-item .num { font-size: 20px; }
+    .stat-item .label { font-size: 11px; }
+    .section { padding: 44px 0; }
+    .compare-table { font-size: 12px; }
+    .compare-table th, .compare-table td { padding: 12px 14px; }
+    .slide { flex: 0 0 260px; padding: 26px 22px; }
+    .cta-group { flex-direction: column; align-items: stretch; }
+    .btn { text-align: center; justify-content: center; }
+    .sticky-cta { display: block; }
+    body { padding-bottom: 76px; }
+  }
+
+  @media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .stat-item .num { font-size: 18px; }
+    .stat-item .label { font-size: 10px; }
+    .slide { flex: 0 0 230px; }
+    .compare-table .hide-mobile { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- BARRA SUPERIOR -->
+<div class="topbar">
+  🇺🇸🇪🇺 <strong>Taxa zero</strong> na primeira conversão de até <strong>US$ 2.000</strong> para novos clientes
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">Conta Internacional Completa</div>
+      <h1>
+        Dólar e euro em um só app.<br>
+        <span>Viaje, invista e compre sem fronteiras.</span>
+      </h1>
+      <p>
+        Abra sua conta Nomad em minutos. Cartão Visa aceito em mais de 180 países.
+        Receba transferências internacionais. Converta reais com a cotação comercial.
+      </p>
+      <div class="cta-group">
+        <a href="https://nomad.onelink.me/wIQT/Account?code=RVVB5BCR8I%26n=Flavio" class="btn btn-primary" target="_blank" rel="noopener sponsored">
+          Abrir minha conta agora →
+        </a>
+        <a href="#beneficios" class="btn btn-outline">Ver benefícios</a>
+      </div>
+      <div class="hero-trust">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          FDIC até US$ 250.000
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Abertura 100% gratuita
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Suporte em português
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BARRA DE NÚMEROS -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="num">180+</div>
+        <div class="label">Países aceitos</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">US$ 250k</div>
+        <div class="label">Proteção FDIC</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">2 moedas</div>
+        <div class="label">Dólar e Euro</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BENEFÍCIOS -->
+<section class="section" id="beneficios">
+  <div class="container">
+    <h2 class="section-title">Por que escolher a Nomad?</h2>
+    <p class="section-sub">Uma conta internacional completa, sem burocracia e sem taxas escondidas.</p>
+
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon blue">💳</div>
+        <h3>Cartão aceito no mundo todo</h3>
+        <p>Cartão de débito Visa físico e virtual. Aceito em mais de 180 países com conversão automática para a moeda local.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon gold">💱</div>
+        <h3>Cotação comercial, não turismo</h3>
+        <p>Converta reais para dólar ou euro usando a cotação comercial — muito mais barata que casas de câmbio tradicionais.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon green">📲</div>
+        <h3>Receba do exterior</h3>
+        <p>Receba transferências via ACH ou Wire de qualquer lugar do mundo diretamente na sua conta em dólar.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon purple">📈</div>
+        <h3>Invista em dólar</h3>
+        <p>Acesse ações, ETFs e renda fixa internacional direto pelo app. Construa patrimônio em moeda forte.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon blue">🛡️</div>
+        <h3>Segurança FDIC</h3>
+        <p>Seus fundos são mantidos em instituições financeiras membros do FDIC, segurados até US$ 250.000 por titular.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon gold">✈️</div>
+        <h3>Nomad Chip incluso</h3>
+        <p>Ao fazer sua primeira conversão, ganhe 1GB de internet grátis no Nomad Chip — o eSIM que conecta você em 30+ países.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDER -->
+<section class="slider-section">
+  <div class="container">
+    <h2 class="section-title">Como funciona em 3 passos</h2>
+    <p class="section-sub">Do cadastro à primeira compra no exterior em poucos minutos.</p>
+
+    <div class="slider-track" id="sliderTrack">
+      <div class="slide">
+        <div class="slide-num">01</div>
+        <h4>Abra sua conta</h4>
+        <p>Baixe o app Nomad, envie seus documentos e aguarde a aprovação. Processo 100% digital e gratuito.</p>
+      </div>
+      <div class="slide">
+        <div class="slide-num">02</div>
+        <h4>Adicione reais</h4>
+        <p>Deposite via Pix na sua conta Nomad. O saldo em real fica disponível para conversão.</p>
+      </div>
+      <div class="slide">
+        <div class="slide-num">03</div>
+        <h4>Converta e use</h4>
+        <p>Converta para dólar ou euro com a cotação comercial. Use o cartão onde quiser ou transfira para contas americanas.</p>
+      </div>
+      <div class="slide">
+        <div class="slide-num">04</div>
+        <h4>Ganhe seu eSIM</h4>
+        <p>Após a primeira conversão, ative o Nomad Chip e ganhe 1GB de internet para usar na sua próxima viagem.</p>
+      </div>
+    </div>
+
+    <div class="slider-dots" id="sliderDots">
+      <span class="active"></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARATIVO -->
+<section class="section compare-section">
+  <div class="container">
+    <h2 class="section-title">Nomad vs. câmbio tradicional</h2>
+    <p class="section-sub">Veja quanto você economiza usando uma conta internacional de verdade.</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Critério</th>
+          <th>Nomad</th>
+          <th>Casa de câmbio</th>
+          <th class="hide-mobile">Banco tradicional</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Cotação</strong></td>
+          <td class="highlight">Comercial</td>
+          <td>Turismo (+5% a 8%)</td>
+          <td class="hide-mobile">Turismo (+5% a 8%)</td>
+        </tr>
+        <tr>
+          <td><strong>Taxa de abertura</strong></td>
+          <td class="highlight">US$ 0,00</td>
+          <td>Varia</td>
+          <td class="hide-mobile">Varia</td>
+        </tr>
+        <tr>
+          <td><strong>Cartão internacional</strong></td>
+          <td class="highlight"><span class="check">✓</span> Visa</td>
+          <td><span class="cross">✗</span> Não incluso</td>
+          <td class="hide-mobile">Com anuidade</td>
+        </tr>
+        <tr>
+          <td><strong>Receber do exterior</strong></td>
+          <td class="highlight"><span class="check">✓</span> ACH/Wire</td>
+          <td><span class="cross">✗</span> Não</td>
+          <td class="hide-mobile">Burocrático</td>
+        </tr>
+        <tr>
+          <td><strong>Investir em dólar</strong></td>
+          <td class="highlight"><span class="check">✓</span> Ações/ETFs</td>
+          <td><span class="cross">✗</span> Não</td>
+          <td class="hide-mobile"><span class="cross">✗</span> Limitado</td>
+        </tr>
+        <tr>
+          <td><strong>Proteção FDIC</strong></td>
+          <td class="highlight"><span class="check">✓</span> US$ 250k</td>
+          <td><span class="cross">✗</span> Não</td>
+          <td class="hide-mobile">Não aplicável</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="background: var(--grey-100);">
+  <div class="container">
+    <h2 class="section-title">Perguntas frequentes</h2>
+    <p class="section-sub">Tire suas dúvidas antes de abrir sua conta.</p>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">
+          Preciso pagar algo para abrir a conta?
+          <span class="arrow">▾</span>
+        </button>
+        <div class="faq-a">Não. A abertura e a manutenção da conta Nomad são gratuitas. Você só paga taxas quando faz operações de conversão ou transferências específicas.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          Posso usar o cartão em países que não usam dólar?
+          <span class="arrow">▾</span>
+        </button>
+        <div class="faq-a">Sim. O cartão Nomad funciona em mais de 180 países. Se você estiver na Europa, por exemplo, a conversão de dólar para euro é feita automaticamente no momento do pagamento.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          Como funciona a taxa zero na primeira conversão?
+          <span class="arrow">▾</span>
+        </button>
+        <div class="faq-a">Novos clientes têm isenção da taxa de conversão na primeira operação de até US$ 2.000 (ou € 2.000). Basta abrir a conta com o código de convite e fazer a conversão dentro do prazo indicado no app.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          O que é o Nomad Chip e como ganho 1GB?
+          <span class="arrow">▾</span>
+        </button>
+        <div class="faq-a">O Nomad Chip é um eSIM (chip virtual) que garante internet em mais de 30 países. Após fazer sua primeira conversão na conta Nomad, você ganha 1GB de dados grátis para usar na sua próxima viagem internacional.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          Meu dinheiro está seguro?
+          <span class="arrow">▾</span>
+        </button>
+        <div class="faq-a">Sim. Os fundos depositados na conta americana da Nomad são mantidos em instituições membros do FDIC (Federal Deposit Insurance Corporation), com cobertura de até US$ 250.000 por titular.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="container">
+    <h2>Pronto para começar?</h2>
+    <p>Abra sua conta Nomad em minutos e aproveite a taxa zero na primeira conversão de até US$ 2.000.</p>
+    <a href="https://nomad.onelink.me/wIQT/Account?code=RVVB5BCR8I%26n=Flavio" class="btn btn-primary" target="_blank" rel="noopener sponsored">
+      Abrir conta gratuita →
+    </a>
+    <div class="trust-line">
+      Código de convite: <strong>RVVB5BCR8I</strong> · Sem custo de abertura · Sem anuidade
+    </div>
+  </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer class="footer">
+  <div class="container">
+    <p class="disclaimer">
+      Este site contém links de afiliado. Ao abrir sua conta através dos links acima, você apoia este conteúdo sem custo adicional.
+      Nomad é uma fintech brasileira, não um banco. Contas são mantidas nos EUA através de instituições parceiras.
+      Consulte os termos e condições no site oficial da Nomad para informações completas sobre tarifas e limites.
+    </p>
+    <p>© 2026 · Conteúdo informativo sobre serviços financeiros internacionais.</p>
+  </div>
+</footer>
+
+<!-- CTA FIXO NO MOBILE -->
+<div class="sticky-cta">
+  <a href="https://nomad.onelink.me/wIQT/Account?code=RVVB5BCR8I%26n=Flavio" class="btn btn-primary" target="_blank" rel="noopener sponsored">
+    Abrir conta Nomad — taxa zero na 1ª conversão
+  </a>
+</div>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = this.parentElement;
+      var wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Slider: sincroniza bolinhas com o scroll
+  var track = document.getElementById('sliderTrack');
+  var dots = document.querySelectorAll('#sliderDots span');
+  if (track && dots.length) {
+    track.addEventListener('scroll', function() {
+      var slideWidth = track.querySelector('.slide').offsetWidth + 20;
+      var index = Math.round(track.scrollLeft / slideWidth);
+      if (index < 0) index = 0;
+      if (index >= dots.length) index = dots.length - 1;
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === index); });
+    }, { passive: true });
+
+    // Clicar na bolinha rola até o slide
+    dots.forEach(function(dot, i) {
+      dot.addEventListener('click', function() {
+        var slideWidth = track.querySelector('.slide').offsetWidth + 20;
+        track.scrollTo({ left: i * slideWidth, behavior: 'smooth' });
+      });
+    });
+  }
+
+  // Rolagem suave para âncoras
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

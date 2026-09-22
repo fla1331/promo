@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imobiliária · Sua Marca Aqui</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+        body {
+            background: #f5f8fa;
+            color: #1a2a3a;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .section-title {
+            font-size: 2.6rem;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+            color: #1a2a3a;
+        }
+        .section-sub {
+            color: #4b6a7a;
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+        .btn-primary {
+            background: #2d7d6f;
+            color: #fff;
+            border: none;
+            padding: 16px 42px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            box-shadow: 0 8px 24px -8px rgba(45, 125, 111, 0.3);
+            letter-spacing: 0.5px;
+        }
+        .btn-primary:hover {
+            background: #1f5f54;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px -10px rgba(45, 125, 111, 0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            color: #2d7d6f;
+            border: 1.5px solid #2d7d6f;
+            padding: 14px 36px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        .btn-outline:hover {
+            background: #2d7d6f;
+            color: #fff;
+        }
+
+        /* HEADER */
+        .navbar {
+            background: #ffffff;
+            padding: 16px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.02);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 1px solid #e8f0ee;
+        }
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #1a2a3a;
+            letter-spacing: -0.5px;
+        }
+        .logo i {
+            color: #2d7d6f;
+            font-size: 2rem;
+        }
+        .logo span {
+            font-weight: 300;
+            color: #2d7d6f;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #2a3f4f;
+            font-weight: 400;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            letter-spacing: 0.3px;
+        }
+        .nav-links a:hover {
+            color: #2d7d6f;
+        }
+        .nav-cta {
+            background: #2d7d6f;
+            color: #fff !important;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 500;
+        }
+        .nav-cta:hover {
+            background: #1f5f54 !important;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background: #1a2a3a;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 80px 0 100px;
+            background: linear-gradient(135deg, #e8f2ef 0%, #ffffff 70%);
+            position: relative;
+        }
+        .hero::before {
+            content: '🏠';
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            font-size: 250px;
+            opacity: 0.03;
+        }
+        .hero-grid {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        .hero-text {
+            flex: 1.2;
+        }
+        .hero-text .badge {
+            background: #d4e8e3;
+            color: #2d7d6f;
+            padding: 6px 22px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        .hero-text h1 {
+            font-size: 3.8rem;
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: #1a2a3a;
+        }
+        .hero-text h1 span {
+            color: #2d7d6f;
+            font-weight: 500;
+            border-bottom: 3px solid #b2d4cc;
+            display: inline-block;
+        }
+        .hero-text p {
+            font-size: 1.15rem;
+            color: #3d5a6a;
+            max-width: 500px;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .hero-image {
+            flex: 1;
+            background: #d4e8e3;
+            border-radius: 30px 100px 30px 100px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 40px 60px -30px rgba(45, 125, 111, 0.1);
+        }
+        .hero-image i {
+            font-size: 9rem;
+            color: #2d7d6f;
+        }
+        .hero-image p {
+            background: #fff;
+            padding: 10px 24px;
+            border-radius: 40px;
+            margin-top: 20px;
+            font-weight: 400;
+            color: #1a2a3a;
+            display: inline-block;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* SOBRE */
+        .sobre {
+            padding: 80px 0;
+            background: #fff;
+        }
+        .sobre-grid {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        .sobre-text {
+            flex: 1;
+        }
+        .sobre-text h2 {
+            font-size: 2.6rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: #1a2a3a;
+        }
+        .sobre-text h2 span {
+            color: #2d7d6f;
+            font-weight: 500;
+        }
+        .sobre-text p {
+            color: #3d5a6a;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+        .sobre-image {
+            flex: 1;
+            background: #e8f2ef;
+            border-radius: 40px 100px 40px 100px;
+            padding: 40px;
+            text-align: center;
+        }
+        .sobre-image i {
+            font-size: 8rem;
+            color: #2d7d6f;
+        }
+
+        /* IMOVEIS */
+        .imoveis {
+            padding: 80px 0;
+            background: #f5f8fa;
+        }
+        .imoveis-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .imoveis-header h2 {
+            font-size: 2.6rem;
+            font-weight: 300;
+            color: #1a2a3a;
+        }
+        .imoveis-header h2 span {
+            color: #2d7d6f;
+            font-weight: 500;
+        }
+        .imoveis-header p {
+            color: #4b6a7a;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 10px auto 0;
+            font-weight: 300;
+        }
+        .imoveis-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .imovel-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.3s;
+            border: 1px solid #e8f0ee;
+        }
+        .imovel-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(45, 125, 111, 0.08);
+        }
+        .imovel-card .img-placeholder {
+            height: 200px;
+            background: #d4e8e3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #2d7d6f;
+        }
+        .imovel-card .info {
+            padding: 25px;
+        }
+        .imovel-card .info h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #1a2a3a;
+            margin-bottom: 5px;
+        }
+        .imovel-card .info .price {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #2d7d6f;
+            margin: 10px 0;
+        }
+        .imovel-card .info .details {
+            display: flex;
+            gap: 15px;
+            color: #4b6a7a;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+        .imovel-card .info .details i {
+            margin-right: 5px;
+            color: #2d7d6f;
+        }
+
+        /* DEPOIMENTOS */
+        .depoimentos {
+            padding: 80px 0;
+            background: #fff;
+        }
+        .depoimentos h2 {
+            text-align: center;
+            font-size: 2.6rem;
+            font-weight: 300;
+            color: #1a2a3a;
+            margin-bottom: 50px;
+        }
+        .depoimentos h2 span {
+            color: #2d7d6f;
+            font-weight: 500;
+        }
+        .depoimentos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .depoimento-card {
+            background: #f5f8fa;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid #e8f0ee;
+        }
+        .depoimento-card .stars {
+            color: #f5b342;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+        .depoimento-card p {
+            color: #1a2a3a;
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+        .depoimento-card .author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .depoimento-card .author .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #d4e8e3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 400;
+            color: #2d7d6f;
+            font-size: 0.8rem;
+        }
+        .depoimento-card .author .name {
+            font-weight: 500;
+            color: #1a2a3a;
+        }
+        .depoimento-card .author .role {
+            font-size: 0.8rem;
+            color: #4b6a7a;
+            font-weight: 300;
+        }
+
+        /* BLOG */
+        .blog {
+            padding: 80px 0;
+            background: #f5f8fa;
+        }
+        .blog h2 {
+            text-align: center;
+            font-size: 2.6rem;
+            font-weight: 300;
+            color: #1a2a3a;
+            margin-bottom: 50px;
+        }
+        .blog h2 span {
+            color: #2d7d6f;
+            font-weight: 500;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .blog-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #e8f0ee;
+            transition: 0.3s;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -15px rgba(45, 125, 111, 0.08);
+        }
+        .blog-card .img-placeholder {
+            height: 180px;
+            background: #d4e8e3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #2d7d6f;
+        }
+        .blog-card .info {
+            padding: 25px;
+        }
+        .blog-card .info .tag {
+            font-size: 0.7rem;
+            color: #2d7d6f;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+        .blog-card .info h4 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #1a2a3a;
+            margin: 8px 0;
+        }
+        .blog-card .info p {
+            color: #4b6a7a;
+            font-size: 0.9rem;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+        .blog-card .info a {
+            color: #2d7d6f;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #1a2a3a;
+            color: #b2cbdd;
+            padding: 50px 0 30px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col h4 {
+            color: #fff;
+            font-weight: 400;
+            margin-bottom: 18px;
+            font-size: 1rem;
+        }
+        .footer-col p,
+        .footer-col a {
+            color: #8ab3c4;
+            text-decoration: none;
+            display: block;
+            margin: 8px 0;
+            transition: 0.2s;
+            font-weight: 300;
+            font-size: 0.95rem;
+        }
+        .footer-col a:hover {
+            color: #fff;
+        }
+        .footer-col .social i {
+            font-size: 1.6rem;
+            margin-right: 15px;
+            color: #8ab3c4;
+            transition: 0.2s;
+        }
+        .footer-col .social i:hover {
+            color: #fff;
+        }
+        .footer-copy {
+            border-top: 1px solid #2a4a5a;
+            padding-top: 25px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 300;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.3);
+            transition: 0.3s;
+            z-index: 1000;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+        }
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .imoveis-grid,
+            .depoimentos-grid,
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            .nav-links {
+                position: absolute;
+                top: 74px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                padding: 30px;
+                gap: 20px;
+                transform: translateY(-200%);
+                transition: 0.3s;
+                box-shadow: 0 20px 30px rgba(0, 0, 0, 0.02);
+                border-bottom: 1px solid #e8f0ee;
+            }
+            .nav-links.open {
+                transform: translateY(0);
+            }
+            .hero-grid,
+            .sobre-grid {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-text p {
+                max-width: 100%;
+            }
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+            .imoveis-grid,
+            .depoimentos-grid,
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                font-size: 2.2rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-building"></i> SuaLogo <span>IMOBI</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#imoveis">Imóveis</a></li>
+                <li><a href="#depoimentos">Depoimentos</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contato" class="nav-cta"><i class="fas fa-calendar-check"></i> Visita</a></li>
+            </ul>
+            <button class="hamburger" id="hamburgerBtn">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <span class="badge"><i class="fas fa-star"></i> Imóveis premium</span>
+                <h1>Encontre o <span>lar dos seus</span> sonhos</h1>
+                <p>Uma imobiliária comprometida em ajudar você a encontrar o lugar perfeito para viver, com transparência e confiança.</p>
+                <div class="hero-actions">
+                    <a href="#" class="btn-primary"><i class="fas fa-arrow-right"></i> Agende uma visita</a>
+                    <a href="#" class="btn-outline"><i class="fas fa-play-circle"></i> Conheça nossos imóveis</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <i class="fas fa-house-chimney"></i>
+                <p><i class="fas fa-quote-left"></i> Seu imóvel, nossa paixão</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="sobre" id="sobre">
+        <div class="container sobre-grid">
+            <div class="sobre-image">
+                <i class="fas fa-handshake"></i>
+            </div>
+            <div class="sobre-text">
+                <h2><span>Sobre</span> a Imobiliária</h2>
+                <p>Com mais de 10 anos de atuação no mercado, nossa imobiliária é sinônimo de confiança e credibilidade. Oferecemos um portfólio diversificado de imóveis, com atendimento personalizado e suporte completo.</p>
+                <p>Nossa equipe de corretores está sempre pronta para ajudar você a encontrar o imóvel perfeito, seja para morar ou investir.</p>
+                <a href="#" class="btn-primary"><i class="fas fa-arrow-right"></i> Conheça nossa história</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="imoveis" id="imoveis">
+        <div class="container">
+            <div class="imoveis-header">
+                <h2>Imóveis em <span>destaque</span></h2>
+                <p>Seleção especial dos melhores imóveis para você</p>
+            </div>
+            <div class="imoveis-grid">
+                <div class="imovel-card">
+                    <div class="img-placeholder"><i class="fas fa-building"></i></div>
+                    <div class="info">
+                        <h3>Apartamento Jardim das Flores</h3>
+                        <div class="price">R$ 450.000</div>
+                        <div class="details">
+                            <span><i class="fas fa-bed"></i> 3</span>
+                            <span><i class="fas fa-bath"></i> 2</span>
+                            <span><i class="fas fa-car"></i> 1</span>
+                            <span><i class="fas fa-ruler-combined"></i> 85m²</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="imovel-card">
+                    <div class="img-placeholder"><i class="fas fa-house"></i></div>
+                    <div class="info">
+                        <h3>Casa em Condomínio Fechado</h3>
+                        <div class="price">R$ 1.200.000</div>
+                        <div class="details">
+                            <span><i class="fas fa-bed"></i> 4</span>
+                            <span><i class="fas fa-bath"></i> 3</span>
+                            <span><i class="fas fa-car"></i> 2</span>
+                            <span><i class="fas fa-ruler-combined"></i> 200m²</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="imovel-card">
+                    <div class="img-placeholder"><i class="fas fa-store"></i></div>
+                    <div class="info">
+                        <h3>Loja Comercial Centro</h3>
+                        <div class="price">R$ 680.000</div>
+                        <div class="details">
+                            <span><i class="fas fa-ruler-combined"></i> 120m²</span>
+                            <span><i class="fas fa-store"></i> Frente 6m</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="depoimentos" id="depoimentos">
+        <div class="container">
+            <h2>O que nossos <span>clientes</span> dizem</h2>
+            <div class="depoimentos-grid">
+                <div class="depoimento-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Encontrei o apartamento dos meus sonhos com a ajuda da imobiliária. Atendimento impecável e suporte em todo o processo."</p>
+                    <div class="author">
+                        <div class="avatar">JR</div>
+                        <div>
+                            <div class="name">João R.</div>
+                            <div class="role">Cliente</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="depoimento-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"A imobiliária tem um portfólio incrível e uma equipe muito competente. Recomendo a todos que buscam qualidade."</p>
+                    <div class="author">
+                        <div class="avatar">MS</div>
+                        <div>
+                            <div class="name">Maria S.</div>
+                            <div class="role">Cliente</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="depoimento-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Profissionais sérios e comprometidos. Me ajudaram a encontrar o imóvel perfeito para investir."</p>
+                    <div class="author">
+                        <div class="avatar">PC</div>
+                        <div>
+                            <div class="name">Paulo C.</div>
+                            <div class="role">Cliente</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog" id="blog">
+        <div class="container">
+            <h2>Dicas e <span>novidades</span></h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="img-placeholder"><i class="fas fa-newspaper"></i></div>
+                    <div class="info">
+                        <span class="tag">Mercado imobiliário</span>
+                        <h4>Tendências do mercado em 2026</h4>
+                        <p>O que esperar para o mercado imobiliário neste ano.</p>
+                        <a href="#">Leia mais →</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="img-placeholder"><i class="fas fa-newspaper"></i></div>
+                    <div class="info">
+                        <span class="tag">Dicas</span>
+                        <h4>Como escolher o imóvel ideal</h4>
+                        <p>Guia prático para encontrar o imóvel perfeito para você.</p>
+                        <a href="#">Leia mais →</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="img-placeholder"><i class="fas fa-newspaper"></i></div>
+                    <div class="info">
+                        <span class="tag">Financiamento</span>
+                        <h4>Financiamento imobiliário: o que saber</h4>
+                        <p>Informações importantes para quem vai financiar um imóvel.</p>
+                        <a href="#">Leia mais →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contato">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><i class="fas fa-building"></i> SuaLogo Imóveis</h4>
+                    <p>Encontrando o lar dos seus sonhos.</p>
+                    <div class="social">
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-facebook"></i>
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Imóveis</h4>
+                    <a href="#">Apartamentos</a>
+                    <a href="#">Casas</a>
+                    <a href="#">Comerciais</a>
+                    <a href="#">Terrenos</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Links</h4>
+                    <a href="#sobre">Sobre</a>
+                    <a href="#imoveis">Imóveis</a>
+                    <a href="#depoimentos">Depoimentos</a>
+                    <a href="#blog">Blog</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <p><i class="fas fa-phone-alt"></i> (11) 99999-9999</p>
+                    <p><i class="fas fa-envelope"></i> contato@suamarca.com</p>
+                    <p><i class="fas fa-map-pin"></i> Seu endereço, cidade</p>
+                </div>
+            </div>
+            <div class="footer-copy">
+                &copy; 2026 SuaLogo Imóveis · Todos os direitos reservados
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5543996432679" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        document.getElementById('hamburgerBtn').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('open');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('open');
+            });
+        });
+    </script>
+</body>
+</html>
