@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AuMiau · Pet Shop & Cuidado Completo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root{
+    --cream:#FBF5E9; --sand:#F2E6CF; --forest:#1F3D33; --forest-2:#2B5346;
+    --coral:#FF6B4A; --coral-dark:#E4552F; --sun:#FFC13B; --ink:#22281F;
+    --line:#E3D7BC;
+    box-sizing:border-box;
+  }
+  *{box-sizing:inherit;margin:0;padding:0;}
+  html{scroll-behavior:smooth;scroll-padding-top:90px;}
+  body{
+    font-family:'Manrope',sans-serif; color:var(--ink); background:var(--cream);
+    line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,.logo-word{font-family:'Baloo 2',sans-serif;}
+  img,svg{max-width:100%; display:block;}
+  a{color:inherit;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px; border-radius:100px;
+    font-weight:700; font-size:1rem; padding:15px 32px; text-decoration:none;
+    cursor:pointer; border:2px solid transparent; transition:transform .18s ease, box-shadow .18s ease;
+    font-family:'Manrope',sans-serif;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-solid{background:var(--coral); color:#fff; box-shadow:0 10px 24px -8px rgba(228,85,47,.55);}
+  .btn-solid:hover{background:var(--coral-dark);}
+  .btn-ghost{border-color:var(--forest); color:var(--forest);}
+  .btn-ghost:hover{background:var(--forest); color:#fff;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; background:var(--sun); color:var(--ink); font-weight:700;
+    font-size:.85rem; padding:8px 18px 8px 10px; border-radius:100px; margin-bottom:18px;
+  }
+  .eyebrow svg{width:20px; height:20px;}
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:50; background:rgba(251,245,233,.92);
+    backdrop-filter:blur(8px); border-bottom:1px solid var(--line);
+    padding-top:env(safe-area-inset-top,0px);
+  }
+  nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+  .logo{display:flex; align-items:center; gap:10px; text-decoration:none;}
+  .logo-word{font-size:1.5rem; font-weight:700; color:var(--forest); letter-spacing:.2px;}
+  .logo-word b{color:var(--coral);}
+  .navlinks{display:flex; align-items:center; gap:34px; list-style:none;}
+  .navlinks a{text-decoration:none; font-weight:600; color:var(--forest); font-size:.98rem;}
+  .navlinks a:hover{color:var(--coral);}
+  .burger{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;}
+  .burger span{width:24px; height:3px; background:var(--forest); border-radius:3px;}
+
+  /* HERO */
+  .hero{padding:64px 0 90px; position:relative; overflow:hidden;}
+  .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:50px; align-items:center;}
+  .hero h1{font-size:3.4rem; font-weight:700; color:var(--forest); line-height:1.08; margin-bottom:20px;}
+  .hero h1 em{font-style:normal; color:var(--coral); position:relative;}
+  .hero p{font-size:1.12rem; color:#4B5A4E; max-width:480px; margin-bottom:32px;}
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:40px;}
+  .hero-stats{display:flex; gap:34px;}
+  .hero-stats div strong{display:block; font-family:'Baloo 2'; font-size:1.7rem; color:var(--forest);}
+  .hero-stats div span{font-size:.85rem; color:#6B7A6D;}
+  .hero-art{position:relative;}
+
+  /* SOBRE */
+  .sobre{padding:90px 0; background:#fff;}
+  .sobre-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:56px; align-items:center;}
+  .sobre-card{
+    background:var(--sand); border-radius:32px; padding:40px; position:relative; aspect-ratio:1/1;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .sobre h2{font-size:2.3rem; color:var(--forest); margin-bottom:18px; font-weight:700;}
+  .sobre p{color:#4B5A4E; margin-bottom:16px; max-width:520px;}
+  .checks{list-style:none; margin-top:22px; display:grid; gap:12px;}
+  .checks li{display:flex; gap:12px; align-items:flex-start; font-weight:600; color:var(--forest-2);}
+  .checks i{color:var(--coral); margin-top:4px;}
+
+  /* SERVICOS */
+  .servicos{padding:90px 0; background:var(--forest); color:#fff;}
+  .servicos-head{text-align:center; max-width:600px; margin:0 auto 50px;}
+  .servicos-head h2{font-size:2.3rem; margin-bottom:12px;}
+  .servicos-head p{color:#C6D6CB;}
+  .servicos-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .servico{
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+    border-radius:22px; padding:32px 26px; transition:.25s;
+  }
+  .servico:hover{background:rgba(255,255,255,.11); transform:translateY(-6px);}
+  .servico .ic{
+    width:72px; height:72px; border-radius:20px; background:var(--coral);
+    display:flex; align-items:center; justify-content:center; margin-bottom:22px;
+    box-shadow:0 10px 22px -8px rgba(255,107,74,.55);
+  }
+  .servico .ic i{font-size:1.7rem; color:#fff;}
+  .servico h3{font-family:'Baloo 2'; font-size:1.25rem; margin-bottom:10px;}
+  .servico p{color:#C6D6CB; font-size:.96rem;}
+
+  /* DEPOIMENTOS */
+  .depo{padding:90px 0;}
+  .depo-head{text-align:center; margin-bottom:46px;}
+  .depo-head h2{font-size:2.3rem; color:var(--forest);}
+  .depo-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .depo-card{background:#fff; border:1px solid var(--line); border-radius:22px; padding:28px;}
+  .depo-card .stars{color:var(--sun); margin-bottom:12px; font-size:.9rem;}
+  .depo-card p{font-style:italic; color:var(--ink); margin-bottom:18px;}
+  .depo-author{display:flex; align-items:center; gap:12px;}
+  .depo-avatar{
+    width:42px; height:42px; border-radius:50%; background:var(--sand); color:var(--forest);
+    display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.85rem;
+  }
+  .depo-author strong{display:block; color:var(--forest); font-size:.95rem;}
+  .depo-author span{font-size:.8rem; color:#7A8A7C;}
+
+  /* CTA */
+  .cta{padding:70px 0;}
+  .cta-inner{
+    background:var(--coral); border-radius:32px; padding:56px 48px; display:flex; align-items:center;
+    justify-content:space-between; gap:30px; flex-wrap:wrap; color:#fff;
+    background-image:radial-gradient(circle at 85% 20%, rgba(255,255,255,.18), transparent 55%);
+  }
+  .cta-inner h2{font-size:2rem; margin-bottom:8px;}
+  .cta-inner p{color:#FFE3D9;}
+  .cta .btn-solid{background:#fff; color:var(--coral-dark);}
+  .cta .btn-solid:hover{background:var(--sun); color:var(--ink);}
+
+  /* FOOTER */
+  footer{background:var(--forest); color:#B9CBBF; padding:56px 0 28px;}
+  .foot-grid{display:grid; grid-template-columns:1.6fr 1fr 1fr 1.1fr; gap:40px; margin-bottom:40px;}
+  .foot-logo{display:flex; align-items:center; gap:10px; margin-bottom:14px;}
+  .foot-logo span{font-family:'Baloo 2'; font-size:1.35rem; font-weight:700; color:#fff;}
+  .foot-col h4{color:#fff; font-family:'Baloo 2'; font-weight:600; margin-bottom:16px; font-size:1rem;}
+  .foot-col a, .foot-col p{display:block; text-decoration:none; color:#B9CBBF; margin:9px 0; font-size:.93rem;}
+  .foot-col a:hover{color:#fff;}
+  .foot-social{display:flex; gap:14px; margin-top:16px;}
+  .foot-social a{
+    width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,.08);
+    display:flex; align-items:center; justify-content:center; font-size:1.25rem; transition:.2s;
+  }
+  .foot-social a:hover{background:var(--coral); transform:translateY(-3px);}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.12); padding-top:22px; text-align:center; font-size:.85rem;}
+
+  .whats{
+    position:fixed; bottom:26px; right:26px; width:66px; height:66px; border-radius:50%;
+    background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center;
+    text-decoration:none; box-shadow:0 12px 28px rgba(37,211,102,.5); z-index:60;
+    padding-bottom:env(safe-area-inset-bottom,0px); transition:transform .2s ease;
+  }
+  .whats:hover{transform:scale(1.07);}
+  .whats svg{width:32px; height:32px;}
+  .btn svg.ic-wa{width:20px; height:20px;}
+
+  @media (max-width:940px){
+    .hero-grid,.sobre-grid{grid-template-columns:1fr;}
+    .hero-art{order:-1;}
+    .servicos-grid,.depo-grid{grid-template-columns:repeat(2,1fr);}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:720px){
+    .burger{display:flex;}
+    .navlinks{
+      position:absolute; top:100%; left:0; width:100%; background:var(--cream);
+      flex-direction:column; padding:26px 28px; gap:18px; border-bottom:1px solid var(--line);
+      transform:translateY(-8px); opacity:0; pointer-events:none; transition:.2s;
+    }
+    .navlinks.open{transform:translateY(0); opacity:1; pointer-events:auto;}
+    .hero h1{font-size:2.4rem;}
+    .hero-stats{gap:22px;}
+    .servicos-grid,.depo-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+    .cta-inner{padding:40px 26px; text-align:center; justify-content:center;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#" class="logo">
+      <svg width="42" height="42" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="32" fill="#1F3D33"/>
+        <ellipse cx="32" cy="38" rx="14" ry="11" fill="#FF6B4A"/>
+        <ellipse cx="19" cy="24" rx="6.2" ry="7.4" fill="#FF6B4A"/>
+        <ellipse cx="45" cy="24" rx="6.2" ry="7.4" fill="#FF6B4A"/>
+        <ellipse cx="32" cy="16" rx="5.4" ry="6.4" fill="#FF6B4A"/>
+        <ellipse cx="19" cy="24" rx="3.1" ry="3.9" fill="#1F3D33"/>
+        <ellipse cx="45" cy="24" rx="3.1" ry="3.9" fill="#1F3D33"/>
+        <ellipse cx="32" cy="16" rx="2.7" ry="3.3" fill="#1F3D33"/>
+      </svg>
+      <span class="logo-word">Au<b>Miau</b></span>
+    </a>
+    <ul class="navlinks" id="navlinks">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="#contato" class="btn btn-solid" style="padding:11px 24px;">Agendar</a></li>
+    </ul>
+    <button class="burger" id="burgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="#1F3D33"><path d="M12 15c-3 0-6.5 2-6.5 5 0 1.2 1 2 2.2 2 1.6 0 2.3-1 4.3-1s2.7 1 4.3 1c1.2 0 2.2-.8 2.2-2 0-3-3.5-5-6.5-5z"/><ellipse cx="5" cy="9" rx="2.3" ry="3"/><ellipse cx="9" cy="4.5" rx="2.1" ry="2.8"/><ellipse cx="15" cy="4.5" rx="2.1" ry="2.8"/><ellipse cx="19" cy="9" rx="2.3" ry="3"/></svg> Feito por quem ama bicho</span>
+      <h1>Cuidado que seu pet sente <em>na hora</em></h1>
+      <p>Banho, tosa, veterinário, hotelzinho e uma lojinha completa em um só lugar. Sua casa quando você não pode estar por perto.</p>
+      <div class="hero-actions">
+        <a href="#contato" class="btn btn-solid"><i class="fa-solid fa-calendar-check"></i> Agendar horário</a>
+        <a href="#servicos" class="btn btn-ghost"><i class="fa-solid fa-bone"></i> Ver serviços</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>15+</strong><span>anos de casa</span></div>
+        <div><strong>8.400</strong><span>pets atendidos</span></div>
+        <div><strong>4.9★</strong><span>avaliação média</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 460 420" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="230" cy="380" rx="190" ry="26" fill="#E3D7BC"/>
+        <circle cx="230" cy="200" r="190" fill="#F2E6CF"/>
+        <g opacity=".5" fill="none" stroke="#E4552F" stroke-width="3" stroke-linecap="round">
+          <path d="M60 70 l10 14 M62 62 l16 6"/>
+          <path d="M400 300 l10 14 M402 292 l16 6"/>
+        </g>
+        <!-- cachorro -->
+        <g transform="translate(70,150)">
+          <ellipse cx="70" cy="150" rx="72" ry="58" fill="#FFC13B"/>
+          <ellipse cx="14" cy="70" rx="24" ry="34" transform="rotate(-18 14 70)" fill="#E4552F"/>
+          <ellipse cx="126" cy="70" rx="24" ry="34" transform="rotate(18 126 70)" fill="#E4552F"/>
+          <circle cx="70" cy="90" r="58" fill="#FFC13B"/>
+          <circle cx="48" cy="86" r="7" fill="#1F3D33"/>
+          <circle cx="92" cy="86" r="7" fill="#1F3D33"/>
+          <ellipse cx="70" cy="108" rx="12" ry="9" fill="#1F3D33"/>
+          <path d="M52 122 q18 16 36 0" stroke="#1F3D33" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </g>
+        <!-- gato -->
+        <g transform="translate(250,120)">
+          <ellipse cx="70" cy="190" rx="66" ry="52" fill="#1F3D33"/>
+          <path d="M20 60 L40 8 L58 62 Z" fill="#1F3D33"/>
+          <path d="M120 60 L100 8 L82 62 Z" fill="#1F3D33"/>
+          <path d="M28 56 L40 24 L52 58 Z" fill="#FF6B4A"/>
+          <path d="M112 56 L100 24 L88 58 Z" fill="#FF6B4A"/>
+          <circle cx="70" cy="98" r="56" fill="#1F3D33"/>
+          <circle cx="50" cy="94" r="7" fill="#FFC13B"/>
+          <circle cx="90" cy="94" r="7" fill="#FFC13B"/>
+          <path d="M70 106 l-6 8 h12 z" fill="#FF6B4A"/>
+          <path d="M20 108 h-26 M20 116 h-24 M120 108 h26 M120 116 h24" stroke="#F2E6CF" stroke-width="2.5" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="sobre" id="sobre">
+  <div class="wrap sobre-grid">
+    <div class="sobre-card">
+      <svg viewBox="0 0 200 200" width="70%">
+        <circle cx="100" cy="100" r="98" fill="#F2E6CF"/>
+        <circle cx="70" cy="70" r="14" fill="#FF6B4A"/>
+        <circle cx="130" cy="70" r="14" fill="#FF6B4A"/>
+        <circle cx="55" cy="105" r="14" fill="#FF6B4A"/>
+        <circle cx="145" cy="105" r="14" fill="#FF6B4A"/>
+        <ellipse cx="100" cy="140" rx="34" ry="26" fill="#FF6B4A"/>
+      </svg>
+    </div>
+    <div>
+      <h2>Uma equipe que trata seu pet como parte da <span style="color:var(--coral)">família</span></h2>
+      <p>Há mais de 15 anos cuidamos de cães, gatos e outros bichanos com uma equipe formada por veterinários, tosadores e adestradores apaixonados pelo que fazem.</p>
+      <p>Do primeiro banho ao check-up anual, cada visita é pensada para ser tranquila — para o pet e para você.</p>
+      <ul class="checks">
+        <li><i class="fa-solid fa-circle-check"></i> Veterinários especializados de plantão</li>
+        <li><i class="fa-solid fa-circle-check"></i> Produtos selecionados para cada raça e porte</li>
+        <li><i class="fa-solid fa-circle-check"></i> Ambiente climatizado e livre de estresse</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="servicos" id="servicos">
+  <div class="wrap">
+    <div class="servicos-head">
+      <h2>O que fazemos por eles</h2>
+      <p>Tudo o que seu pet precisa, sem precisar rodar a cidade atrás</p>
+    </div>
+    <div class="servicos-grid">
+      <div class="servico"><div class="ic"><i class="fa-solid fa-shower"></i></div><h3>Banho & Tosa</h3><p>Produtos hipoalergênicos e tosadores que respeitam o tempo do seu pet.</p></div>
+      <div class="servico"><div class="ic"><i class="fa-solid fa-stethoscope"></i></div><h3>Consulta Veterinária</h3><p>Check-ups, vacinas e atendimento de urgência com equipe própria.</p></div>
+      <div class="servico"><div class="ic"><i class="fa-solid fa-bone"></i></div><h3>Pet Shop</h3><p>Ração, brinquedos e acessórios selecionados para cada fase da vida.</p></div>
+      <div class="servico"><div class="ic"><i class="fa-solid fa-house-chimney"></i></div><h3>Hotelzinho</h3><p>Hospedagem com monitoramento e rotina de carinho durante sua viagem.</p></div>
+      <div class="servico"><div class="ic"><i class="fa-solid fa-graduation-cap"></i></div><h3>Adestramento</h3><p>Métodos positivos para um convívio mais leve em casa e na rua.</p></div>
+      <div class="servico"><div class="ic"><i class="fa-solid fa-van-shuttle"></i></div><h3>Pet Táxi</h3><p>Buscamos e levamos seu pet com conforto e toda a segurança.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="depo" id="depoimentos">
+  <div class="wrap">
+    <div class="depo-head"><h2>Quem já passou por aqui</h2></div>
+    <div class="depo-grid">
+      <div class="depo-card">
+        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <p>"O Thor sai de lá cheiroso e tranquilo, sem aquele estresse de outros lugares que já levei."</p>
+        <div class="depo-author"><div class="depo-avatar">MF</div><div><strong>Marina F.</strong><span>Tutora do Thor</span></div></div>
+      </div>
+      <div class="depo-card">
+        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <p>"Deixei minha gata no hotelzinho por uma semana e recebi fotos todos os dias. Voltei tranquila."</p>
+        <div class="depo-author"><div class="depo-avatar">JP</div><div><strong>João P.</strong><span>Tutor da Mel</span></div></div>
+      </div>
+      <div class="depo-card">
+        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <p>"Atendimento veterinário rápido num domingo em que meu cachorro passou mal. Serei grata sempre."</p>
+        <div class="depo-author"><div class="depo-avatar">CL</div><div><strong>Camila L.</strong><span>Tutora do Bidu</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="cta-inner">
+      <div>
+        <h2>Vamos marcar o próximo banho?</h2>
+        <p>Resposta rápida pelo WhatsApp, sem espera na linha.</p>
+      </div>
+      <a href="https://wa.me/5543996432679" class="btn btn-solid"><svg class="ic-wa" viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.3.6 4.4 1.7 6.3L4 29l7.9-1.7c1.8 1 3.9 1.6 6.1 1.6 6.6 0 12-5.4 12-12S22.6 3 16 3zm7 16.9c-.3.9-1.7 1.7-2.3 1.8-.6.1-1.4.1-2.2-.1-.5-.2-1.2-.4-2-.8-3.5-1.5-5.8-5-6-5.3-.2-.3-1.4-1.9-1.4-3.6s.9-2.6 1.3-2.9c.3-.3.7-.4 1-.4h.7c.2 0 .5 0 .8.6.3.7 1 2.4 1.1 2.5.1.2.2.4 0 .6-.1.2-.2.4-.4.6-.2.2-.4.5-.6.6-.2.2-.4.4-.2.8.2.4 1 1.6 2.1 2.6 1.4 1.3 2.6 1.7 3 1.9.4.2.6.2.8-.1.2-.3.9-1 1.1-1.4.2-.3.5-.3.8-.2s2 1 2.4 1.1c.3.2.6.2.6.4.1.2.1.9-.2 1.8z"/></svg> Chamar no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer id="contato">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <div class="foot-logo">
+          <svg width="34" height="34" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="#FF6B4A"/><ellipse cx="32" cy="38" rx="14" ry="11" fill="#1F3D33"/><ellipse cx="19" cy="24" rx="6.2" ry="7.4" fill="#1F3D33"/><ellipse cx="45" cy="24" rx="6.2" ry="7.4" fill="#1F3D33"/><ellipse cx="32" cy="16" rx="5.4" ry="6.4" fill="#1F3D33"/></svg>
+          <span>AuMiau</span>
+        </div>
+        <p>Cuidado completo para cães e gatos, com carinho de quem entende de bicho.</p>
+        <div class="foot-social">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://wa.me/5543996432679" aria-label="WhatsApp"><svg viewBox="0 0 32 32" fill="currentColor" width="22" height="22"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.3.6 4.4 1.7 6.3L4 29l7.9-1.7c1.8 1 3.9 1.6 6.1 1.6 6.6 0 12-5.4 12-12S22.6 3 16 3zm7 16.9c-.3.9-1.7 1.7-2.3 1.8-.6.1-1.4.1-2.2-.1-.5-.2-1.2-.4-2-.8-3.5-1.5-5.8-5-6-5.3-.2-.3-1.4-1.9-1.4-3.6s.9-2.6 1.3-2.9c.3-.3.7-.4 1-.4h.7c.2 0 .5 0 .8.6.3.7 1 2.4 1.1 2.5.1.2.2.4 0 .6-.1.2-.2.4-.4.6-.2.2-.4.5-.6.6-.2.2-.4.4-.2.8.2.4 1 1.6 2.1 2.6 1.4 1.3 2.6 1.7 3 1.9.4.2.6.2.8-.1.2-.3.9-1 1.1-1.4.2-.3.5-.3.8-.2s2 1 2.4 1.1c.3.2.6.2.6.4.1.2.1.9-.2 1.8z"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Serviços</h4>
+        <a href="#servicos">Banho & Tosa</a>
+        <a href="#servicos">Veterinário</a>
+        <a href="#servicos">Hotelzinho</a>
+        <a href="#servicos">Pet Shop</a>
+      </div>
+      <div class="foot-col">
+        <h4>Navegação</h4>
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#depoimentos">Depoimentos</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contato</h4>
+        <p><i class="fa-solid fa-phone"></i> (43) 99643-2679</p>
+        <p><i class="fa-solid fa-envelope"></i> contato@aumiau.com</p>
+        <p><i class="fa-solid fa-location-dot"></i> Seu endereço, cidade</p>
+      </div>
+    </div>
+    <div class="foot-bottom">&copy; 2026 AuMiau Pet Shop · Todos os direitos reservados</div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5543996432679" target="_blank" class="whats" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.3.6 4.4 1.7 6.3L4 29l7.9-1.7c1.8 1 3.9 1.6 6.1 1.6 6.6 0 12-5.4 12-12S22.6 3 16 3zm7 16.9c-.3.9-1.7 1.7-2.3 1.8-.6.1-1.4.1-2.2-.1-.5-.2-1.2-.4-2-.8-3.5-1.5-5.8-5-6-5.3-.2-.3-1.4-1.9-1.4-3.6s.9-2.6 1.3-2.9c.3-.3.7-.4 1-.4h.7c.2 0 .5 0 .8.6.3.7 1 2.4 1.1 2.5.1.2.2.4 0 .6-.1.2-.2.4-.4.6-.2.2-.4.5-.6.6-.2.2-.4.4-.2.8.2.4 1 1.6 2.1 2.6 1.4 1.3 2.6 1.7 3 1.9.4.2.6.2.8-.1.2-.3.9-1 1.1-1.4.2-.3.5-.3.8-.2s2 1 2.4 1.1c.3.2.6.2.6.4.1.2.1.9-.2 1.8z"/></svg>
+</a>
+
+<script>
+  const btn = document.getElementById('burgerBtn');
+  const nav = document.getElementById('navlinks');
+  btn.addEventListener('click', () => nav.classList.toggle('open'));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+</script>
+</body>
+</html>
